@@ -3,6 +3,11 @@
 This is a really light wrapper around the API.
 It only loads the json to python objects.
 
+All public functions will return a list of results if the query was
+successfull, or a dictionary with the error if it failed. The module is written
+for both Python 2.7.x and Python 3.x, the only thing to keep in mind is that
+the strings in the results will always be utf-8.
+
 """
 
 import json
