@@ -4,7 +4,7 @@ pySpaceGDN is a client-side module for interfacing with the SpaceGDN API over Py
 
 ## How do I install this?
 
-pySpaceGDN is available via pip and easy_install.  You can also manually install pySpaceGDN by simply downloading the code here and installing it using setup.
+pySpaceGDN will be available via pip and easy_install.  You can also manually install pySpaceGDN by simply downloading the code here and installing it using setup.
 
 #### Examples:
 
