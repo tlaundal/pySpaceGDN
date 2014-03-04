@@ -17,6 +17,8 @@ except ImportError:
     from urllib.error import HTTPError
     from urllib.request import urlopen, Request
 
+__author__ = 'totokaka'
+__version__ = '0.1'
 
 USER_AGENT = 'pySpaceGDN 0.1'
 BASE = 'http://gdn.api.xereo.net/v1/'

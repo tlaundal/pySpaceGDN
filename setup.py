@@ -9,7 +9,7 @@ setup(
     author=spacegdn.__author__,
     author_email='mail@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
-    packages=['spacegdn'],
+    py_modules=['spacegdn'],
     classifiers=[
         'Intended Audience :: Information Technology',
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
