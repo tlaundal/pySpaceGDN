@@ -38,7 +38,7 @@ def __request(url, page=1):
         page   The page number to fetch. Defaults to 1
 
     """
-    _debug('requesting url {} page {}', repr(url), repr(page))
+    _debug('requesting url {} page {}', repr(BASE+url), repr(page))
     url += '?page='+str(page)
 
     headers = {}
@@ -52,6 +52,7 @@ def __request(url, page=1):
         return json.loads(
             '\n'.join([line.decode("utf-8") for line in err.readlines()]))
     else:
+        _debug('SUCCESS')
         return json.loads(response.decode("utf-8"))
 
 
@@ -181,3 +182,73 @@ def builds(jar=None, channel=None, version=None, build=None):
     if build is not None:
         url += '/' + str(build)
     return _request(url)
+
+
+def _get_id(result, key, key_name='name', id_name='id'):
+    """ Internal function for use in get_id.
+
+    This function extacts the id_name for the results of one of the fetcher
+    functions in this module if the key watches the value of the result's
+    key_name.
+
+    Return the value of the result's id_name if found. 0 if not found. <0 if
+    result was error.
+
+    """
+    if type(result) is list:
+        for element in result:
+            if element[key_name].lower() == key.lower():
+                return element[id_name]
+        return 0
+    else:
+        return -result['code']
+
+
+def get_id(jar=None, channel=None, version=None, build=None):
+    """ Get the ID for jar, channel, version or build.
+
+    This function will fetch the ID for the `highest` argument specified. This
+    means that if jar, version and build are specified the id of the build will
+    be returned. You should specify as many of the `lower` arguments as you
+    can, so you get the correct result.
+
+    Arguments:
+        jar        The name of the jar, must be string
+        channel    The name of the channel, must be string
+        version    The name of the version, must be string
+        build      The number of the build, must be integer
+
+    Returns an integer with the id. The returned value will be zero if the
+    object was not found, and the negative value of the error code if something
+    went wrong.
+
+    """
+    if jar is not None:
+        jar = _get_id(jars(), jar)
+        if jar <= 0:
+            return jar
+    if channel is not None:
+        channel = _get_id(channels(jar=jar), channel)
+        if channel <= 0:
+            return channel
+    if version is not None:
+        version = _get_id(versions(jar=jar, channel=channel), version,
+                          'version')
+        if version <= 0:
+            return version
+    if build is not None:
+        build = _get_id(builds(jar=jar, channel=channel, version=version),
+                        build, 'build')
+        if build <= 0:
+            return build
+
+    if build is not None:
+        return build
+    elif version is not None:
+        return version
+    elif channel is not None:
+        return channel
+    elif jar is not None:
+        return jar
+    else:
+        return 0
