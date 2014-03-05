@@ -205,7 +205,7 @@ def _get_id(result, key, key_name='name', id_name='id'):
     """
     if type(result) is list:
         for element in result:
-            if element[key_name].lower() == key.lower():
+            if str(element[key_name]).lower() == str(key).lower():
                 return element[id_name]
         return 0
     else:
@@ -218,8 +218,9 @@ def get_id(jar=None, channel=None, version=None, build=None):
     This function will fetch the ID for the `highest` argument specified. This
     means that if jar, version and build are specified the id of the build will
     be returned. You should specify as many of the `lower` arguments as you
-    can, so you get the correct result. On all arguments except `build` you can
-    supply an integer, and that integer will be considered the id.
+    can, so you get the correct result. More specific fetching will also be
+    faster. On all arguments except `build` you can supply an integer, and that
+    integer will be considered the id.
 
     Arguments:
         jar        The name of the jar
