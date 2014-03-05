@@ -8,6 +8,8 @@ successfull, or a dictionary with the error if it failed. The module is written
 for both Python 2.7.x and Python 3.x, the only thing to keep in mind is that
 the strings in the results will always be utf-8.
 
+All functions may raise HTTPErrors.
+
 """
 
 import json
@@ -37,6 +39,9 @@ def __request(url, page=1):
         url    The URL to fetch. For example 'jar'
         page   The page number to fetch. Defaults to 1
 
+    This will raise an HTTPError if we get an HTTPError from SpaceGDN that
+    does not have code 400.
+
     """
     _debug('requesting url {} page {}', repr(BASE+url), repr(page))
     url += '?page='+str(page)
@@ -49,8 +54,11 @@ def __request(url, page=1):
         response = urlopen(Request(BASE + url, headers=headers)).read()
     except HTTPError as err:
         _debug('HTTPError')
-        return json.loads(
-            '\n'.join([line.decode("utf-8") for line in err.readlines()]))
+        if err.code == 400:
+            return json.loads(
+                '\n'.join([line.decode("utf-8") for line in err.readlines()]))
+        else:
+            raise err
     else:
         _debug('SUCCESS')
         return json.loads(response.decode("utf-8"))
@@ -210,12 +218,13 @@ def get_id(jar=None, channel=None, version=None, build=None):
     This function will fetch the ID for the `highest` argument specified. This
     means that if jar, version and build are specified the id of the build will
     be returned. You should specify as many of the `lower` arguments as you
-    can, so you get the correct result.
+    can, so you get the correct result. On all arguments except `build` you can
+    supply an integer, and that integer will be considered the id.
 
     Arguments:
-        jar        The name of the jar, must be string
-        channel    The name of the channel, must be string
-        version    The name of the version, must be string
+        jar        The name of the jar
+        channel    The name of the channel
+        version    The name of the version
         build      The number of the build, must be integer
 
     Returns an integer with the id. The returned value will be zero if the
@@ -223,32 +232,32 @@ def get_id(jar=None, channel=None, version=None, build=None):
     went wrong.
 
     """
-    if jar is not None:
+    return_value = 0
+    if jar is not None and type(jar) is not int:
         jar = _get_id(jars(), jar)
         if jar <= 0:
             return jar
-    if channel is not None:
+        else:
+            return_value = jar
+    if channel is not None and type(channel) is not int:
         channel = _get_id(channels(jar=jar), channel)
         if channel <= 0:
             return channel
-    if version is not None:
+        else:
+            return_value = channel
+    if version is not None and type(version) is not int:
         version = _get_id(versions(jar=jar, channel=channel), version,
                           'version')
         if version <= 0:
             return version
+        else:
+            return_value = version
     if build is not None:
         build = _get_id(builds(jar=jar, channel=channel, version=version),
                         build, 'build')
         if build <= 0:
             return build
+        else:
+            return_value = build
 
-    if build is not None:
-        return build
-    elif version is not None:
-        return version
-    elif channel is not None:
-        return channel
-    elif jar is not None:
-        return jar
-    else:
-        return 0
+    return return_value
