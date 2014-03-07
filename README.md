@@ -30,6 +30,6 @@ After you have cloned this repo:
 Overloadable variables:
 
 * spacegdn.USER_AGENT - This should be set to whatever your application is.  By default, it will report as pySpaceGDN 1.0.
-* spacegdn.BASE - This is the base URL to SpaceGDN used by pySpaceGDN. Currently you have to set this to "http://spacegdn.totokaka.io/v3/" for spacegdn to work. This is because the official host is 
+* spacegdn.BASE - This is the base URL to SpaceGDN used by pySpaceGDN. Currently you have to set this to "http://spacegdn.totokaka.io/v1/" for spacegdn to work. This is because the official host is 
 currently down.
 * spacegdn.DEBUG - Whether debug output should be printed, this is only useful for developer.
