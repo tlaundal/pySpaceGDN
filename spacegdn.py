@@ -10,6 +10,11 @@ the strings in the results will always be utf-8.
 
 All functions may raise HTTPErrors.
 
+Most functions should be self explainable, but this should probably be read
+first: https://github.com/connor4312/SpaceGDN
+Notably is searching which is done from the regular methods, for example:
+    spacegdn.jars(where=something)
+
 """
 
 import json
@@ -20,14 +25,14 @@ except ImportError:
     from urllib.request import urlopen, Request
 
 __author__ = 'totokaka'
-__version__ = '0.1'
+__version__ = '0.2'
 
 USER_AGENT = 'pySpaceGDN 0.1'
 BASE = 'http://gdn.api.xereo.net/v1/'
 DEBUG = False
 
 
-def __request(url, page=1):
+def __request(url, query=None):
     """ Base Request.
 
     The parent function that all public functions call in order to initiate
@@ -35,16 +40,23 @@ def __request(url, page=1):
     the URL format expected by the API.  Also will add the User-Agent defined
     by the USER_AGENT variable.
 
-    This takes two arguments:
+    This takes three arguments:
         url    The URL to fetch. For example 'jar'
         page   The page number to fetch. Defaults to 1
+        query  Queries. Notably here is where and sort.
 
     This will raise an HTTPError if we get an HTTPError from SpaceGDN that
     does not have code 400.
 
     """
-    _debug('requesting url {} page {}', repr(BASE+url), repr(page))
-    url += '?page='+str(page)
+    if query is None:
+        query = {}
+    query = '?' + '&'.join([str(key) + '=' + str(value) for key, value
+                            in query.items()])
+
+    url += query
+
+    _debug('requesting url {}', repr(BASE+url))
 
     headers = {}
     headers['User-Agent'] = USER_AGENT
@@ -54,7 +66,7 @@ def __request(url, page=1):
         response = urlopen(Request(BASE + url, headers=headers)).read()
     except HTTPError as err:
         _debug('HTTPError')
-        if err.code == 400:
+        if err.code == 400 or err.code == 492:
             return json.loads(
                 '\n'.join([line.decode("utf-8") for line in err.readlines()]))
         else:
@@ -64,7 +76,7 @@ def __request(url, page=1):
         return json.loads(response.decode("utf-8"))
 
 
-def _request(url):
+def _request(url, **query):
     """ Base Request which fetches all pages.
 
     This is a wrapper around __request which fetches all pages, and extracts
@@ -81,7 +93,8 @@ def _request(url):
     results = []
     page = 1
     while True:
-        response = __request(url, page=page)
+        query['page'] = page
+        response = __request(url, query)
         if response is None or not response['success']:
             return response['error']
         results += response['results']
@@ -97,7 +110,7 @@ def _debug(message, *args):
         print(message.format(*args))
 
 
-def jars(jar=None):
+def jars(jar=None, **query):
     """ Jars.
 
     List jars. All available or just one.
@@ -112,10 +125,10 @@ def jars(jar=None):
     url = 'jar'
     if not jar is None:
         url += '/' + str(jar)
-    return _request(url)
+    return _request(url, **query)
 
 
-def channels(jar=None, channel=None):
+def channels(jar=None, channel=None, **query):
     """ Channels.
 
     List channels. All available, for a specific jar or just one.
@@ -134,10 +147,10 @@ def channels(jar=None, channel=None):
     url += 'channel'
     if channel is not None:
         url += '/' + str(channel)
-    return _request(url)
+    return _request(url, **query)
 
 
-def versions(jar=None, channel=None, version=None):
+def versions(jar=None, channel=None, version=None, **query):
     """ Versions.
 
     List versions. All available, for a specific jar, for a specific channel
@@ -160,10 +173,10 @@ def versions(jar=None, channel=None, version=None):
     url += 'version'
     if version is not None:
         url += '/' + str(version)
-    return _request(url)
+    return _request(url, **query)
 
 
-def builds(jar=None, channel=None, version=None, build=None):
+def builds(jar=None, channel=None, version=None, build=None, **query):
     """ Builds.
 
     List builds. All available, for a specific jar, for a specific channel,
@@ -189,7 +202,7 @@ def builds(jar=None, channel=None, version=None, build=None):
     url += 'build'
     if build is not None:
         url += '/' + str(build)
-    return _request(url)
+    return _request(url, **query)
 
 
 def _get_id(result, key, key_name='name', id_name='id'):
@@ -233,6 +246,7 @@ def get_id(jar=None, channel=None, version=None, build=None):
     went wrong.
 
     """
+    # TODO - Optimize, we can use search
     return_value = 0
     if jar is not None and type(jar) is not int:
         jar = _get_id(jars(), jar)
