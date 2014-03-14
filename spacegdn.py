@@ -205,24 +205,14 @@ def builds(jar=None, channel=None, version=None, build=None, **query):
     return _request(url, **query)
 
 
-def _get_id(result, key, key_name='name', id_name='id'):
-    """ Internal function for use in get_id.
-
-    This function extacts the id_name for the results of one of the fetcher
-    functions in this module if the key watches the value of the result's
-    key_name.
-
-    Return the value of the result's id_name if found. 0 if not found. <0 if
-    result was error.
-
-    """
-    if type(result) is list:
-        for element in result:
-            if str(element[key_name]).lower() == str(key).lower():
-                return element[id_name]
-        return 0
+def _get_id(result):
+    """ Undocumented internal function. """
+    if not type(result) is list:
+        return result['code']
+    elif len(result) <= 0:
+        return -1
     else:
-        return -result['code']
+        return result[0]['id']
 
 
 def get_id(jar=None, channel=None, version=None, build=None):
@@ -246,32 +236,31 @@ def get_id(jar=None, channel=None, version=None, build=None):
     went wrong.
 
     """
-    # TODO - Optimize, we can use search
     return_value = 0
     if jar is not None and type(jar) is not int:
-        jar = _get_id(jars(), jar)
+        jar = _get_id(jars(where='jar.name.eq.'+jar))
         if jar <= 0:
             return jar
         else:
             return_value = jar
     if channel is not None and type(channel) is not int:
-        channel = _get_id(channels(jar=jar), channel)
+        channel = _get_id(channels(jar=jar, where='channel.name.eq.'+channel))
         if channel <= 0:
-            return channel
+            return -1
         else:
             return_value = channel
     if version is not None and type(version) is not int:
-        version = _get_id(versions(jar=jar, channel=channel), version,
-                          'version')
+        version = _get_id(versions(jar=jar, channel=channel,
+                                   where='version.version.eq.' + version))
         if version <= 0:
-            return version
+            return -1
         else:
             return_value = version
     if build is not None:
-        build = _get_id(builds(jar=jar, channel=channel, version=version),
-                        build, 'build')
+        build = _get_id(builds(jar=jar, channel=channel, version=version,
+                               where='build.build.eq.' + str(build)))
         if build <= 0:
-            return build
+            return -1
         else:
             return_value = build
 
