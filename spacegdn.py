@@ -237,6 +237,7 @@ def get_id(jar=None, channel=None, version=None, build=None):
 
     """
     return_value = 0
+    _debug('Getting id for: {} {} {} {}', jar, channel, version, build)
     if jar is not None and type(jar) is not int:
         jar = _get_id(jars(where='jar.name.eq.'+jar))
         if jar <= 0:
@@ -264,4 +265,5 @@ def get_id(jar=None, channel=None, version=None, build=None):
         else:
             return_value = build
 
+    _debug('Found id: {}', return_value)
     return return_value
