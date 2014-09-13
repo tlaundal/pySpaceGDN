@@ -3,16 +3,16 @@ from distutils.core import setup
 import spacegdn
 
 setup(
-    name='pySpaceGDN',
-    version=spacegdn.__version__,
+    name=spacegdn.name,
+    version=spacegdn.version,
     description='Python Module for the SpaceGDN JSON API',
-    author=spacegdn.__author__,
-    author_email='mail@totokaka.io',
+    author='totokaka',
+    author_email='mail+pyspacegdn@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
-    py_modules=['spacegdn'],
+    packages=['spacegdn', 'spacegdn.requests'],
     classifiers=[
-        'Intended Audience :: Information Technology',
-        'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
