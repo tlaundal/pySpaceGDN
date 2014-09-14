@@ -4,10 +4,10 @@ from distutils.core import setup
 import pyspacegdn
 
 setup(
-    name=pyspacegdn.name,
-    version=pyspacegdn.version,
+    name=pyspacegdn.__title__,
+    version=pyspacegdn.__version__,
     description='Python Module for the SpaceGDN JSON API',
-    author='totokaka',
+    author=pyspacegdn.__author__,
     author_email='mail+pyspacegdn@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
     packages=['pyspacegdn', 'pyspacegdn.requests'],

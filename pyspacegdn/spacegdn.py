@@ -1,6 +1,8 @@
 """ SpaceGDN class for `pySpaceGDN`. """
 
-import requests
+from __future__ import absolute_import
+
+from requests.utils import default_user_agent
 import pyspacegdn
 from pyspacegdn.requests import FindRequest
 
@@ -53,8 +55,9 @@ class SpaceGDN(object):
 
     def _create_user_agent(self):
         """ Create the user agent and return it as a string. """
-        user_agent = '{}/{} {}'.format(pyspacegdn.name, pyspacegdn.version,
-                                       requests.utils.default_user_agent())
+        user_agent = '{}/{} {}'.format(pyspacegdn.__title__,
+                                       pyspacegdn.__version__,
+                                       default_user_agent())
         if self.client_name:
             user_agent = '{}/{} {}'.format(self.client_name,
                                            self.client_version, user_agent)
