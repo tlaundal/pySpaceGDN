@@ -64,7 +64,7 @@ class Response(object):
 
         self.ok = status_code == 200
 
-        if self.ok:
+        if self.ok and data:
             if not self.data:
                 self.data = list()
             self.data += data

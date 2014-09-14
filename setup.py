@@ -1,16 +1,16 @@
 """ Setup.py for pySpaceGDN. """
 
 from distutils.core import setup
-import pyspacegdn
 
 setup(
-    name=pyspacegdn.__title__,
-    version=pyspacegdn.__version__,
+    name='pySpaceGDN',
+    version='2.0.0-dev',
     description='Python Module for the SpaceGDN JSON API',
-    author=pyspacegdn.__author__,
+    author='Tobias Laundal',
     author_email='mail+pyspacegdn@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
     packages=['pyspacegdn', 'pyspacegdn.requests'],
+    install_requires=['requests'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
