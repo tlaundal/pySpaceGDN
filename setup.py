@@ -1,4 +1,5 @@
 """ Setup.py for pySpaceGDN. """
+
 from distutils.core import setup
 import spacegdn
 
@@ -9,7 +10,7 @@ setup(
     author='totokaka',
     author_email='mail+pyspacegdn@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
-    packages=['spacegdn', 'spacegdn.requests'],
+    packages=['pyspacegdn', 'pyspacegdn.requests'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

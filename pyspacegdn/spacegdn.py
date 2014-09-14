@@ -1,0 +1,65 @@
+""" SpaceGDN class for `pySpaceGDN`. """
+
+import requests
+import pyspacegdn
+from pyspacegdn.requests import FindRequest
+
+
+class SpaceGDN(object):
+
+    """ The main class for pySpaceGDN.
+
+    An instance of this class is the entrypoint for pySpaceGDN. Through this
+    class, most request types defined by SpaceGDN can be sent to a SpaceGDN
+    host.
+
+    Methods:
+        find -- Create a find request
+
+    Attributes:
+        client_name    -- The name of the client that created this instance.
+                          If the client name is not set, this will be
+                          `Uknown`
+        client_version -- The version of the client that created this instance.
+                          If the client version is not set, this will be
+                          `uknown`
+        endpoint       -- The endpoint this instance relates to.
+        user_agent     -- The user agent string for this client.
+
+    """
+
+    def __init__(self, client_name='Uknown', client_version='uknown',
+                 endpoint=pyspacegdn.DEFAULT_ENDPOINT):
+        """ Instantiate a new SpaceGDN client.
+
+        There are no required arguments. The client name and version arguments
+        are used to set the user agents, and should be set when using
+        pySpaceGDN for other things than testing.
+
+        Optional arguments:
+            client_name (str)    -- The name of the client using this instance.
+                                    Defaults to `Uknown`.
+            client_version (str) -- The version of the client using this
+                                    instance. Defaults to `uknown`.
+            endpoint (str)       -- The endpoint to connect to. Defaults to
+                                    `DEFAULT_ENDPOINT` in `pyspacegdn`.
+
+        """
+        self.client_name = client_name
+        self.client_version = client_version
+        self.endpoint = endpoint
+
+        self.user_agent = self._create_user_agent()
+
+    def _create_user_agent(self):
+        """ Create the user agent and return it as a string. """
+        user_agent = '{}/{} {}'.format(pyspacegdn.name, pyspacegdn.version,
+                                       requests.utils.default_user_agent())
+        if self.client_name:
+            user_agent = '{}/{} {}'.format(self.client_name,
+                                           self.client_version, user_agent)
+        return user_agent
+
+    def find(self):
+        """ Create and return a new `FindRequest`. """
+        return FindRequest(self)
