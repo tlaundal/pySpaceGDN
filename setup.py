@@ -1,11 +1,11 @@
 """ Setup.py for pySpaceGDN. """
 
 from distutils.core import setup
-import spacegdn
+import pyspacegdn
 
 setup(
-    name=spacegdn.name,
-    version=spacegdn.version,
+    name=pyspacegdn.name,
+    version=pyspacegdn.version,
     description='Python Module for the SpaceGDN JSON API',
     author='totokaka',
     author_email='mail+pyspacegdn@totokaka.io',
