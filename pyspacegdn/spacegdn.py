@@ -16,17 +16,20 @@ class SpaceGDN(object):
     host.
 
     Methods:
-        find -- Create a find request
+        `find`
+            Create a find request
 
     Attributes:
-        client_name    -- The name of the client that created this instance.
-                          If the client name is not set, this will be
-                          `Uknown`
-        client_version -- The version of the client that created this instance.
-                          If the client version is not set, this will be
-                          `uknown`
-        endpoint       -- The endpoint this instance relates to.
-        user_agent     -- The user agent string for this client.
+        `client_name`
+            The name of the client that created this instance. If the client
+            name is not set, this will be `Uknown`
+        `client_version`
+            The version of the client that created this instance. If the client
+            version is not set, this will be `uknown`
+        `endpoint`
+            The endpoint this instance relates to.
+        `user_agent`
+            The user agent string for this client.
 
     """
 
@@ -39,12 +42,15 @@ class SpaceGDN(object):
         pySpaceGDN for other things than testing.
 
         Optional arguments:
-            client_name (str)    -- The name of the client using this instance.
-                                    Defaults to `Uknown`.
-            client_version (str) -- The version of the client using this
-                                    instance. Defaults to `uknown`.
-            endpoint (str)       -- The endpoint to connect to. Defaults to
-                                    `DEFAULT_ENDPOINT` in `pyspacegdn`.
+            `client_name` (`str`)
+                The name of the client using this instance. Defaults to
+                `Uknown`.
+            `client_version` (`str`)
+                The version of the client using this instance. Defaults to
+                `uknown`.
+            `endpoint` (`str`)
+                The endpoint to connect to. Defaults to `DEFAULT_ENDPOINT` in
+                `pyspacegdn`.
 
         """
         self.client_name = client_name

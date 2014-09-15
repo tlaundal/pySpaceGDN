@@ -9,21 +9,25 @@ have been imported into pyspacegdn/__init__.py, so they may be imported
 directly from the package, like this:
 
 >>> from pyspacegdn import SpaceGDN
->>>
 
 Packages:
-    requests -- Contains the request classes
+    `requests`
+        Contains the request classes
 
 Classes:
-    SpaceGDN -- The entry point for the client
-    Response -- A response object for the client
+    `SpaceGDN`
+        The entry point for the client
+    `Response`
+        A response object for the client
 
 Constants:
-    DEFAULT_ENDPOINT  -- The default endpoint. Set to `gdn.jamy.be` by default.
-    ELEMENT_DELIMITER -- The delimiter to separate different elements in a
-                         filter. Set to `.` by default.
-    FILTER_DELIMITER  -- The delimiter to separate different filters. Set to
-                         `|` by default.
+    `DEFAULT_ENDPOINT`
+        The default endpoint. Set to `gdn.jamy.be` by default.
+    `ELEMENT_DELIMITER`
+        The delimiter to separate different elements in a filter. Set to `.`
+        by default.
+    `FILTER_DELIMITER`
+        The delimiter to separate different filters. Set to `|` by default.
 
 """
 

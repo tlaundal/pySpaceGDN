@@ -12,7 +12,8 @@ class UsageRequest(object):
     be used to both create the request, and execute it.
 
     Methods:
-        fetch           -- Send the request to SpaceGDN and fetch the results
+        fetch
+            Send the request to SpaceGDN and fetch the results
 
     """
 

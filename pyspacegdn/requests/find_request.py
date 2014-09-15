@@ -13,13 +13,20 @@ class FindRequest(object):
     be used to both create the request, and execute it.
 
     Methods:
-        type            -- Set the type of elements in the response
-        include_parents -- Define if the response should contain parent data
-        parents         -- Set parents
-        parent          -- Set a parent, alias for parents
-        sort            -- Define how the results should be sorted
-        where           -- Add filters
-        fetch           -- Send the request to SpaceGDN and fetch the results
+        `type`
+            Set the type of elements in the response
+        `include_parents`
+            Define if the response should contain parent data
+        `parents`
+            Set parents
+        `parent`
+            Set a parent, alias for parents
+        `sort`
+            Define how the results should be sorted
+        `where`
+            Add filters
+        `fetch`
+            Send the request to SpaceGDN and fetch the results
 
     """
 
@@ -41,7 +48,8 @@ class FindRequest(object):
         """ Set the type the result elements has to be of.
 
         Arguments:
-            return_type (str) -- The type of elements to get
+            `return_type` (`str`)
+                The type of elements to get
 
         """
         self._type = return_type
@@ -50,9 +58,10 @@ class FindRequest(object):
     def include_parents(self):
         """ Include parent data in the response.
 
-        This is also called 'bubbeling', and is covered in the documentation_.
+        This is also called 'bubbling'. See also the documentation on
+        `bubbling`_.
 
-        .. _documentation: https://github.com/XereoNet/SpaceGDN/wiki/API#bubbling
+        .. _bubbling: https://github.com/XereoNet/SpaceGDN/wiki/API#bubbling
 
         """
         self._include_parents = True
@@ -65,7 +74,8 @@ class FindRequest(object):
         accounted for.
 
         Arguments:
-            *parents (str) -- The parents all elements must have
+            `*parents` (`str`)
+                The parents all elements must have
 
         """
         self._parents += parents
@@ -80,13 +90,14 @@ class FindRequest(object):
         Define how the results should be sorted. The arguments should be tuples
         of string defining the key and direction to sort by. For example
         `('name', 'asc')` and `('version', 'desc')`. The first sorte rule is
-        considered first by the API. See also the API documentation_ on this
-        point.
+        considered first by the API. See also the API documentation on
+        `sorting`_.
 
         Arguments:
-            *sort (tuple) -- The rules to sort by
+            `*sort` (`tuple`)
+                The rules to sort by
 
-        .. _documentation: https://github.com/XereoNet/SpaceGDN/wiki/API#sorting
+        .. _sorting: https://github.com/XereoNet/SpaceGDN/wiki/API#sorting
 
         """
         self._sort = FILTER_DELIMITER.join(
@@ -97,14 +108,14 @@ class FindRequest(object):
         """ Filter the results.
 
         Filter the results by provided rules. The rules should be dictionaries
-        that looks like this:
+        that looks like this::
 
             {
                 '<key>': '<operator>',
                 'value': '<value>'
             }
 
-        For example:
+        For example::
 
             {
                 'name': '$eq',

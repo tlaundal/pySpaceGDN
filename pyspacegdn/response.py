@@ -21,18 +21,23 @@ class Response(object):
     respectively.
 
     Methods:
-        add                    -- For adding pages, only for internal use
-        is_rate_limit_exceeded -- Check if error was exceeded rate limit
-        is_malformed_request   -- Check if error was malformed request
+        `add`
+            For adding pages, only for internal use
+        `is_rate_limit_exceeded`
+            Check if error was exceeded rate limit
+        `is_malformed_request`
+            Check if error was malformed request
 
     Attributes:
-        status_code   -- The raw HTTP status code, for example 200
-        status_reason -- The reason or description for the status, for example
-                         OK
-        ok            -- Whether the response is OK/successful. This is just a
-                         check as to whether status_code is 200
-        data          -- The data in the response, typically a list or
-                         dictionary
+        `status_code`
+            The raw HTTP status code, for example 200
+        `status_reason`
+            The reason or description for the status, for example OK
+        `ok`
+            Whether the response is OK/successful. This is just a check as to
+            whether status_code is 200
+        `data`
+            The data in the response, typically a list or dictionary
 
     """
 
@@ -52,11 +57,12 @@ class Response(object):
         multiple pages.
 
         Arguments:
-            data          -- The data to add
-            status_code   -- The HTTP response code of the HTTP response
-                             containing the data
-            status_reason -- The reason or description for the HTTP response
-                             code
+            `data`
+                The data to add
+            `status_code`
+                The HTTP response code of the HTTP response containing the data
+            `status_reason`
+                The reason or description for the HTTP response code
 
         """
         self.status_code = status_code
