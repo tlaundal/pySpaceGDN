@@ -35,7 +35,7 @@ class UsageRequest(object):
         Returns a `Response` object.
 
         """
-        url = '/'.join(['http:/', self.spacegdn.endpoint, 'usage'])
+        url = '/'.join(['http:/', self.spacegdn.endpoint, 'v2/usage'])
 
         headers = dict()
         headers['Accept'] = 'application/json'
@@ -46,4 +46,6 @@ class UsageRequest(object):
         if resp.ok:
             results = resp.json()
 
-        return Response(results, resp.status_code, resp.reason)
+        response = Response()
+        response.add(results, resp.status_code, resp.reason)
+        return response
