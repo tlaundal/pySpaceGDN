@@ -1,5 +1,13 @@
-The `pyspacegdn` module
------------------------
+The `pyspacegdn` package
+------------------------
 
 .. automodule:: pyspacegdn
-    :members: SpaceGDN, Response
+
+Package Content
+~~~~~~~~~~~~~~~
+
+.. toctree::
+    :maxdepth: 2
+
+    pyspacegdn/spacegdn
+    pyspacegdn/response

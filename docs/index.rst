@@ -28,15 +28,16 @@ Have a look::
 
 
 
-Contents:
+Contents
+~~~~~~~~~
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     reference
 
 Indices and tables
-==================
+~~~~~~~~~~~~~~~~~~
 
 * :ref:`genindex`
 * :ref:`modindex`
