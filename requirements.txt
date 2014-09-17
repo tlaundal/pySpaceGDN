@@ -1,0 +1,4 @@
+requests
+setuptools
+wheel
+twine
