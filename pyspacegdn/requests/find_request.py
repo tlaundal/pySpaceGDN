@@ -128,10 +128,10 @@ class FindRequest(object):
 
         """
         filters = list()
-        for f in where:
-            key = (f.keys() - {'value'}).pop()
-            operator = f[key]
-            value = str(f['value'])
+        for filter_ in where:
+            key = (filter_.keys() - {'value'}).pop()
+            operator = filter_[key]
+            value = str(filter_['value'])
             filters.append(ELEMENT_DELIMITER.join((key, operator, value)))
         self._where = FILTER_DELIMITER.join(filters)
         return self
@@ -168,7 +168,7 @@ class FindRequest(object):
             resp = requests.get(url, params=query_args,
                                 headers=headers)
             results = None
-            if (response.ok):
+            if response.ok:
                 data = resp.json()
                 results = data['results']
                 query_args['page'] = data['pagination']['page'] + 1
