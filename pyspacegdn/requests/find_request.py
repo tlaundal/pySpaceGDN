@@ -168,7 +168,7 @@ class FindRequest(object):
             resp = requests.get(url, params=query_args,
                                 headers=headers)
             results = None
-            if response.ok:
+            if response.success:
                 data = resp.json()
                 results = data['results']
                 query_args['page'] = data['pagination']['page'] + 1

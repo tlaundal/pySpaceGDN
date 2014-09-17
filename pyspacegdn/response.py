@@ -17,7 +17,7 @@ class Response(object):
     it can be used by other classes.
 
     When a `Response` object is first instantiated, `status_code`,
-    `status_reason` and `ok` is set to `0`, `'Not loaded'` and `False`,
+    `status_reason` and `success` is set to `0`, `'Not loaded'` and `False`,
     respectively.
 
     Methods:
@@ -33,8 +33,8 @@ class Response(object):
             The raw HTTP status code, for example 200
         `status_reason`
             The reason or description for the status, for example OK
-        `ok`
-            Whether the response is OK/successful. This is just a check as to
+        `success`
+            Whether the response is successful. This is just a check as to
             whether status_code is 200
         `data`
             The data in the response, typically a list or dictionary
@@ -44,7 +44,7 @@ class Response(object):
     data = None
     status_code = 0
     status_reason = 'Not loaded'
-    ok = False
+    success = False
 
     def add(self, data, status_code, status_reason):
         """ Add data to this response.
@@ -68,9 +68,9 @@ class Response(object):
         self.status_code = status_code
         self.status_reason = status_reason
 
-        self.ok = status_code == 200
+        self.success = status_code == 200
 
-        if self.ok and data:
+        if self.success and data:
             if not self.data:
                 self.data = list()
             self.data += data
