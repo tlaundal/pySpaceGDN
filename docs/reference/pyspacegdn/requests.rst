@@ -9,5 +9,6 @@ Package Content
 .. toctree::
     :maxdepth: 2
 
+    requests/request
     requests/find_request
     requests/usage_request
