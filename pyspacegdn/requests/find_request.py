@@ -135,7 +135,7 @@ class FindRequest(Request):
         response = Response()
         has_next = True
         while has_next:
-            resp = super().fetch()
+            resp = super(FindRequest, self).fetch()
             results = None
             if resp.success:
                 results = resp.data['results']
