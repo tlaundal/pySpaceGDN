@@ -4,7 +4,7 @@ from __future__ import absolute_import
 
 from requests.utils import default_user_agent
 import pyspacegdn
-from pyspacegdn.requests import FindRequest, UsageRequest
+from pyspacegdn.requests import Request, FindRequest
 
 
 class SpaceGDN(object):
@@ -75,4 +75,4 @@ class SpaceGDN(object):
 
     def usage(self):
         """ Create and return a new `UsageRequest`. """
-        return UsageRequest(self)
+        return Request(self).set_path('v2/usage')
