@@ -12,19 +12,19 @@ class FindRequest(Request):
     be used to both create the request, and execute it.
 
     Methods:
-        `type`
+        :meth:`.type`
             Set the type of elements in the response
-        `include_parents`
+        :meth:`.include_parents`
             Define if the response should contain parent data
-        `parents`
+        :meth:`.parents`
             Set parents
-        `parent`
+        :meth:`.parent`
             Set a parent, alias for parents
-        `sort`
+        :meth:`.sort`
             Define how the results should be sorted
-        `where`
+        :meth:`.where`
             Add filters
-        `fetch`
+        :meth:`.FindRequest.fetch`
             Send the request to SpaceGDN and fetch the results
 
     """
@@ -126,10 +126,10 @@ class FindRequest(Request):
         """ Run the request and fetch the results.
 
         This method will compile the request, send it to the SpaceGDN endpoint
-        defined with the `SpaceGDN` object and wrap the results in a `Response`
-        object.
+        defined with the `SpaceGDN` object and wrap the results in a
+        :class:`pyspacegdn.Response` object.
 
-        Returns a `Response` object.
+        Returns a :class:`pyspacegdn.Response` object.
 
         """
         response = Response()

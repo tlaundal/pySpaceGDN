@@ -10,33 +10,34 @@ class Response(object):
     and fields are defined for easy analysis of the response.
 
     This class is intended to be instantiated from `pySpaceGDN`, and not by an
-    application  using the framework. The `Response` object will then be
-    populated by `pySpaceGDN`, with pages from SpaceGDN. The status of the
-    response is given by the last page got from SpaceGDN. If a page fails, no
-    other pages will be loaded. When the response object is fully populated,
-    it can be used by other classes.
+    application  using the framework. The :class:`.Response` object will then
+    be populated by `pySpaceGDN`, with pages from SpaceGDN.
 
-    When a `Response` object is first instantiated, `status_code`,
-    `status_reason` and `success` is set to `0`, `'Not loaded'` and `False`,
-    respectively.
+    The status of the response is given by the last page got from SpaceGDN. If
+    a page fails, no other pages will be loaded. When the response object is
+    fully populated, it can be used by other classes.
+
+    When a :class:`.Response` object is first instantiated,
+    `status_code`, `status_reason` and `success` is set to `0`, `'Not loaded'`
+    and `False`, respectively.
 
     Methods:
-        `add`
+        :meth:`.add`
             For adding pages, only for internal use
-        `is_rate_limit_exceeded`
+        :meth:`.is_rate_limit_exceeded`
             Check if error was exceeded rate limit
-        `is_malformed_request`
+        :meth:`.is_malformed_request`
             Check if error was malformed request
 
     Attributes:
-        `status_code`
+        :attr:`.status_code`
             The raw HTTP status code, for example 200
-        `status_reason`
+        :attr:`.status_reason`
             The reason or description for the status, for example OK
-        `success`
+        :attr:`.success`
             Whether the response is successful. This is just a check as to
             whether status_code is 200
-        `data`
+        :attr:`.data`
             The data in the response, typically a list or dictionary
 
     """

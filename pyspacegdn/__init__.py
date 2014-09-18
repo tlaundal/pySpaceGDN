@@ -11,23 +11,33 @@ directly from the package, like this:
 >>> from pyspacegdn import SpaceGDN
 
 Packages:
-    `requests`
+    :mod:`.requests`
         Contains the request classes
 
 Classes:
-    `SpaceGDN`
+    :class:`.SpaceGDN`
         The entry point for the client
-    `Response`
+    :class:`.Response`
         A response object for the client
 
 Constants:
-    `DEFAULT_ENDPOINT`
+    :const:`.DEFAULT_ENDPOINT`
         The default endpoint. Set to `gdn.jamy.be` by default.
-    `ELEMENT_DELIMITER`
+    :const:`.ELEMENT_DELIMITER`
         The delimiter to separate different elements in a filter. Set to `.`
         by default.
-    `FILTER_DELIMITER`
+    :const:`.FILTER_DELIMITER`
         The delimiter to separate different filters. Set to `|` by default.
+
+Data variables:
+    :data:`.__title__`
+        The title/name of this framework
+    :data:`.__version__`
+        The version of the framework
+    :data:`.__author__`
+        The author of the framework
+    :data:`.__copyright__`
+        The copyright string for the framework
 
 """
 

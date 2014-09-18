@@ -11,4 +11,3 @@ Package Content
 
     requests/request
     requests/find_request
-    requests/usage_request

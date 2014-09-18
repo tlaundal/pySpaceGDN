@@ -22,19 +22,24 @@ class Request(object):
     All methods will `return self`.
 
     Methods:
-        `set_path`
+        :meth:`.set_path`
             Set the path to query
-        `add_post_param`
+        :meth:`.add_post_param`
             Add a HTTP POST parameter
-        `add_get_param`
+        :meth:`.add_get_param`
             Add a HTTP GET parameter
-        `fetch`
+        :meth:`.Request.fetch`
             Fetch the result.
+
+    Attributes:
+        :attr:`.spacegdn`
+            The :class:`pyspacegdn.SpaceGDN` instance used to create this
+            request
 
     """
 
     def __init__(self, spacegdn):
-        """ Instantiate a new `FindRequest`.
+        """ Instantiate a new :class:`.Request`.
 
         This should only be called by classes, functions or modules in
         `pySpaceGDN`.
@@ -93,7 +98,7 @@ class Request(object):
     def fetch(self):
         """ Execute the request and fetch the result.
 
-        The result will be returned as a :py:class:`pyspacegdn.Response`
+        The result will be returned as a :class:`pyspacegdn.Response`
         object.
 
         """

@@ -16,19 +16,19 @@ class SpaceGDN(object):
     host.
 
     Methods:
-        `find`
+        :meth:`.find`
             Create a find request
 
     Attributes:
-        `client_name`
+        :attr:`.client_name`
             The name of the client that created this instance. If the client
             name is not set, this will be `Uknown`
-        `client_version`
+        :attr:`.client_version`
             The version of the client that created this instance. If the client
             version is not set, this will be `uknown`
-        `endpoint`
+        :attr:`.endpoint`
             The endpoint this instance relates to.
-        `user_agent`
+        :attr:`.user_agent`
             The user agent string for this client.
 
     """
@@ -49,8 +49,8 @@ class SpaceGDN(object):
                 The version of the client using this instance. Defaults to
                 `uknown`.
             `endpoint` (`str`)
-                The endpoint to connect to. Defaults to `DEFAULT_ENDPOINT` in
-                `pyspacegdn`.
+                The endpoint to connect to. Defaults to
+                :const:`pyspacegdn.DEFAULT_ENDPOINT` in :mod:`pyspacegdn`.
 
         """
         self.client_name = client_name
@@ -70,9 +70,11 @@ class SpaceGDN(object):
         return user_agent
 
     def find(self):
-        """ Create and return a new `FindRequest`. """
+        """ Create and return a new :class:`pyspacegdn.requests.FindRequest`.
+        """
         return FindRequest(self)
 
     def usage(self):
-        """ Create and return a new `UsageRequest`. """
+        """ Create and return a new :class:`pyspacegdn.requests.UsageRequest`.
+        """
         return Request(self).set_path('v2/usage')
