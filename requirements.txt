@@ -3,3 +3,4 @@ setuptools
 nose
 mock
 coverage
+python-coveralls
