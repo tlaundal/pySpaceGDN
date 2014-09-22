@@ -2,3 +2,4 @@ requests
 setuptools
 nose
 mock
+coverage
