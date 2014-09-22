@@ -44,7 +44,8 @@ Data variables:
 __title__ = 'pySpaceGDN'
 __version__ = '2.0.0-dev'
 __author__ = 'Tobias Laundal'
-__copyright__ = 'Copyright 2014 Tobias Laundal'
+__license__ = 'MIT'
+__copyright__ = 'Copyright (c) 2014 Tobias Laundal'
 
 DEFAULT_ENDPOINT = 'gdn.jamy.be'
 
