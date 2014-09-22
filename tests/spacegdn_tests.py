@@ -14,7 +14,7 @@ class SpaceGDNTests(unittest.TestCase):
             '{}/{} {}'.format(pyspacegdn.__title__, pyspacegdn.__version__,
                               default_user_agent())))
 
-    def test_name_version(self):
+    def test_user_agent(self):
         name = "N<a>me"
         version = '0.10-beta1'
         gdn = SpaceGDN(name, version)

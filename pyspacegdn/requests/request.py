@@ -50,7 +50,7 @@ class Request(object):
         self._headers = dict()
         self._post_params = dict()
         self._get_params = dict()
-        self._path = ''
+        self._path = None
 
         self._headers['User-Agent'] = self.spacegdn.user_agent
         self._headers['Accept'] = 'application/json'
@@ -95,15 +95,20 @@ class Request(object):
         self._get_params[key] = value
         return self
 
-    def fetch(self):
+    def fetch(self, default_path=str()):
         """ Execute the request and fetch the result.
 
         The result will be returned as a :class:`pyspacegdn.Response`
         object.
 
         """
+        if not self._path:
+            path = default_path
+        else:
+            path = self._path
+
         req_type = 'GET' if len(self._post_params) == 0 else 'POST'
-        url = '/'.join(['http:/', self.spacegdn.endpoint, self._path])
+        url = '/'.join(['http:/', self.spacegdn.endpoint, path])
         resp = requests.request(req_type, url, params=self._get_params,
                                 data=self._post_params, headers=self._headers)
         response = Response()

@@ -71,10 +71,11 @@ class Response(object):
 
         self.success = status_code == 200
 
-        if not self.data:
-            self.data = data
-        else:
-            self.data += data
+        if data:
+            if not self.data:
+                self.data = data
+            else:
+                self.data += data
 
     def is_rate_limit_exceeded(self):
         """ Check whether the response is a 'rate limit exceeded' response. """

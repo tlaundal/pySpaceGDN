@@ -64,7 +64,7 @@ class FindRequest(Request):
                 The parents all elements must have
 
         """
-        self.set_path('/'.join(parents))
+        self.set_path('/'.join(('v2',) + parents))
         return self
 
     # Alias `parents` to `parent`
@@ -93,20 +93,14 @@ class FindRequest(Request):
     def where(self, *where):
         """ Filter the results.
 
-        Filter the results by provided rules. The rules should be dictionaries
-        that looks like this::
+        Filter the results by provided rules. The rules should be tuples that
+        look like this::
 
-            {
-                '<key>': '<operator>',
-                'value': '<value>'
-            }
+            ('<key>', '<operator>', '<value>')
 
         For example::
 
-            {
-                'name': '$eq',
-                'value': 'Vanilla Minecraft'
-            }
+            ('name', '$eq', 'Vanilla Minecraft')
 
         This is also covered in the documentation_ of the SpaceGDN API.
 
@@ -114,10 +108,7 @@ class FindRequest(Request):
 
         """
         filters = list()
-        for filter_ in where:
-            key = (filter_.keys() - {'value'}).pop()
-            operator = filter_[key]
-            value = str(filter_['value'])
+        for key, operator, value in where:
             filters.append(ELEMENT_DELIMITER.join((key, operator, value)))
         self.add_get_param('where', FILTER_DELIMITER.join(filters))
         return self
@@ -135,7 +126,7 @@ class FindRequest(Request):
         response = Response()
         has_next = True
         while has_next:
-            resp = super(FindRequest, self).fetch()
+            resp = super(FindRequest, self).fetch(default_path='v2')
             results = None
             if resp.success:
                 results = resp.data['results']

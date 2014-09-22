@@ -20,6 +20,14 @@ class ResponseTest(unittest.TestCase):
         response.add([492], 492, 'Rate limit exceeded!')
         self.assertFalse(response.success)
         self.assertIn(492, response.data)
+        self.assertTrue(response.is_rate_limit_exceeded())
+
+    def test_400MalformedRequest(self):
+        response = Response()
+        response.add([200], 200, 'OK')
+        response.add(None, 400, 'Malformed Request')
+        self.assertFalse(response.success)
+        self.assertTrue(response.is_malformed_request())
 
     def test_contents(self):
         response = Response()
@@ -28,7 +36,7 @@ class ResponseTest(unittest.TestCase):
         self.assertEquals(response.data, ['ok', 42])
 
     def test_dict(self):
-        data = dict()
+        data = {'key': 'value'}
         response = Response()
         response.add(data, 200, 'OK')
         self.assertIs(response.data, data)
