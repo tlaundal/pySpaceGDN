@@ -8,9 +8,9 @@ from the package, like this:
 >>> from pyspacegdn.requests import FindRequest
 
 Classes:
-    :py:class:`pyspacegdn..requests.Request`
+    :py:class:`pyspacegdn.requests.Request`
         The base class for all requests
-    :py:class:`pyspacegdn..requests.FindRequest`
+    :py:class:`pyspacegdn.requests.FindRequest`
         A `find` request to SpaceGDN
 
 """

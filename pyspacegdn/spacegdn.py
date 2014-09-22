@@ -18,6 +18,8 @@ class SpaceGDN(object):
     Methods:
         :meth:`.find`
             Create a find request
+        :meth:`.usage`
+            Create an usage request
 
     Attributes:
         :attr:`.client_name`

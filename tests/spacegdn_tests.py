@@ -24,4 +24,5 @@ class SpaceGDNTests(unittest.TestCase):
     def test_requests(self):
         gdn = SpaceGDN()
         self.assertIsInstance(gdn.find(), Request)
+        # FIXME - Make sure this actually calls to /v2/usage
         self.assertIsInstance(gdn.usage(), Request)
