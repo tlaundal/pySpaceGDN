@@ -1,5 +1,7 @@
 requests
 setuptools
+wheel
+twine
 nose
 mock
 coverage
