@@ -1,5 +1,4 @@
 import unittest
-import mock
 from pyspacegdn.requests import FindRequest
 from .request_tests import RequestTestBase
 
