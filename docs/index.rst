@@ -34,6 +34,7 @@ Contents
 .. toctree::
     :maxdepth: 3
 
+    changelog
     reference
 
 Indices and tables
