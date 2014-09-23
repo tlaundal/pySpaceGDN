@@ -7,9 +7,10 @@ pySpaceGDN is an MIT licensed client-side module for interfacing with
 the SpaceGDN API over Python. It is heavily documented and unit
 tested(100% test coverage - Woot, woot!).
 
-**The documentation is `here`_.**
+**The documentation is** |here.|_
 
-.. _here: http://pyspacegdn.readthedocs.org/en/latest/
+.. |here.| replace:: **here.**
+.. _here.: http://pyspacegdn.readthedocs.org/en/latest/
 
 .. |Travis-ci| image:: http://img.shields.io/travis/totokaka/pySpaceGDN.svg?style=flat-square
    :target: https://travis-ci.org/totokaka/pySpaceGDN/
