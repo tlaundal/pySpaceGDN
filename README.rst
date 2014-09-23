@@ -15,7 +15,7 @@ tested(100% test coverage - Woot, woot!).
 .. |Travis-ci| image:: http://img.shields.io/travis/totokaka/pySpaceGDN.svg?style=flat-square
    :target: https://travis-ci.org/totokaka/pySpaceGDN/
 .. |ReadTheDocs| image:: http://img.shields.io/badge/docs-v2.0-brightgreen.svg?style=flat-square
-   :target: http://pyspacegdn.readthedocs.org/en/v2.0/
+   :target: http://pyspacegdn.readthedocs.org/
 .. |Code Health| image:: http://img.shields.io/badge/health-96%-brightgreen.svg?style=flat-square
    :target: https://landscape.io/github/totokaka/pySpaceGDN/master
 .. |Coverage Status| image:: http://img.shields.io/coveralls/totokaka/pySpaceGDN.svg?style=flat-square
