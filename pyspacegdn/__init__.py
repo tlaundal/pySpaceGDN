@@ -42,7 +42,7 @@ Data variables:
 """
 
 __title__ = 'pySpaceGDN'
-__version__ = '2.0.1'
+__version__ = '2.0.2-dev'
 __author__ = 'Tobias Laundal'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2014 Tobias Laundal'
