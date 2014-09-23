@@ -95,11 +95,11 @@ class Request(object):
         self._get_params[key] = value
         return self
 
-    def fetch(self, default_path=str()):
-        """ Execute the request and fetch the result.
+    def _fetch(self, default_path):
+        """ Internal method for fetching.
 
-        The result will be returned as a :class:`pyspacegdn.Response`
-        object.
+        This differs from :meth:`.fetch` in that it accepts a default path as
+        an argument.
 
         """
         if not self._path:
@@ -118,3 +118,12 @@ class Request(object):
         response.add(data, resp.status_code, resp.reason)
 
         return response
+
+    def fetch(self):
+        """ Execute the request and fetch the result.
+
+        The result will be returned as a :class:`pyspacegdn.Response`
+        object.
+
+        """
+        return self._fetch(str())

@@ -3,15 +3,19 @@
 from os import path
 from setuptools import setup
 
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.rst')) as f:
-    long_description = f.read()
+
+def get_long_description():
+    """ Read the long description. """
+    here = path.abspath(path.dirname(__file__))
+    with open(path.join(here, 'README.rst')) as readme:
+        return readme.read()
+    return None
 
 setup(
     name='pySpaceGDN',
     version='2.0.1-dev',
     description='Python Module for the SpaceGDN JSON API',
-    long_description=long_description,
+    long_description=get_long_description(),
     author='Tobias Laundal',
     author_email='mail+pyspacegdn@totokaka.io',
     url='https://github.com/totokaka/pySpaceGDN',
