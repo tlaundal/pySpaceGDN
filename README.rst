@@ -1,7 +1,7 @@
 What is pySpaceGDN?
 -------------------
 
-|Travis-ci|\ |ReadTheDocs|\ |Code Health|\ |Coverage Status|\ |License|
+|Travis-ci|\ |ReadTheDocs|\ |Code Health|\ |Coverage Status|\ |License|\ |PyPI|
 
 pySpaceGDN is an MIT licensed client-side module for interfacing with
 the SpaceGDN API over Python. It is heavily documented and unit
@@ -22,3 +22,5 @@ tested(100% test coverage - Woot, woot!).
    :target: https://coveralls.io/r/totokaka/pySpaceGDN?branch=master
 .. |License| image:: http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
    :target: http://opensource.org/licenses/mit-license.php
+.. |PyPI| image:: http://img.shields.io/pypi/v/pySpaceGDN.svg?style=flat-square
+   :target: https://pypi.python.org/pypi/pySpaceGDN
