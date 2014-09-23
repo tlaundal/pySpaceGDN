@@ -13,7 +13,7 @@ def get_long_description():
 
 setup(
     name='pySpaceGDN',
-    version='2.0.1-dev',
+    version='2.0.1',
     description='Python Module for the SpaceGDN JSON API',
     long_description=get_long_description(),
     author='Tobias Laundal',
